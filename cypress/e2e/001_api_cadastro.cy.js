@@ -6,7 +6,7 @@ import * as GetUsuarios from '../support/requests/Usuarios/getUsuarios.request'
 describe('Login', () => {
     it('Realizar cadastro via API', () => {
         PostUsuarios.cadastrarUsuario().should((response) =>{
-            expect(response.status).to.eq(200)
+            expect(response.status).to.eq(201)
             expect(response.body).to.be.not.null
         })
     })

@@ -3,7 +3,7 @@
 function apagarProduto(id, auth) {
     return cy.request({
         method: "DELETE",
-        url: `produtos/${id}`,
+        url: Cypress.env('baseUri') + `/produtos/${id}`,
         headers: {
             accept: "application/json",
             Authorization: auth
@@ -13,4 +13,4 @@ function apagarProduto(id, auth) {
 }
 
 
-export {apagarProduto}
+export { apagarProduto }

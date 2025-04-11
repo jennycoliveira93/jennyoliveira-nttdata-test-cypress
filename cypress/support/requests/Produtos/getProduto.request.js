@@ -3,7 +3,7 @@
 function listarProduto() {
     return cy.request({
         method: "GET",
-        url: "produtos",
+        url: Cypress.env('baseUri') + "/produtos",
         headers: {
             accept: "application/json"
         },
@@ -12,4 +12,4 @@ function listarProduto() {
 }
 
 
-export {listarProduto}
+export { listarProduto }

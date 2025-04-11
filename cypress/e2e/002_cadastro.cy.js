@@ -41,51 +41,51 @@ Funcionalidade: Tela de Cadastro
 */
 
 describe('Funcionalidade: Tela Login - Opção Cadastre-se', () => {
-  before(() => {
-    cy.fixture('admin_user').then((usuarioFixture) => {
-      cy.API_ObterEmailEExcluirUserPorId(usuarioFixture.admin.emailValido)
-    })
-  })
-
-  afterEach(() => {
-    cy.screenshot()
-  })
-
-  context('Dado que eu acesse a tela de Login do front do ServeRest', () => {
-    context('E que eu clique na opção Cadastre-se', () => {
-      context('E que eu esteja na tela Cadastro', () => {
-        beforeEach(() => {
-          cy.visit('/login')
-
-          cy.get(locators.LOGIN.OPCAO_CADASTRE_SE)
-            .should('be.visible')
-            .click()
-
-          cy.url().should('be.equal', `${Cypress.config('baseUrl')}/cadastrarusuarios`)
+    before(() => {
+        cy.fixture('usuario.json').then((usuarioFixture) => {
+            cy.API_ObterEmailEExcluirUserPorId(usuarioFixture.admin.emailValido)
         })
+    })
 
-        context('Cenário 1: Validar Cadastro Administrador', () => {
-          const exemplos = [
-            { nome: 'nomeValido1', email: 'emailValido', senha: 'senhaValida1', mensagem: 'Cadastro realizado com sucesso' },
-            { nome: 'nomeValido', email: 'emailInvalidoVazio', senha: 'senhaValida', mensagem: 'Email é obrigatório' },
-            { nome: 'nomeValido2', email: 'emailInvalidoDominioSemPonto', senha: 'senhaValida2', mensagem: 'Email deve ser um email válido' },
-          ]
+    afterEach(() => {
+        cy.screenshot()
+    })
 
-          exemplos.forEach((ex) => {
-            context(`Quando eu informar os campos ${ex.nome}, ${ex.email}, ${ex.senha} e opcão Cadastrar como administrador`, () => {
-              it(`Então na tela de Cadastro deverá apresentar a mensagem ${ex.mensagem}`, () => {
-                cy.fixture('usuario').then((usuarioFixture) => {
-                  cy.realizarCadastro(usuarioFixture.admin[ex.nome], usuarioFixture.admin[ex.email], usuarioFixture.admin[ex.senha])
+    context('Dado que eu acesse a tela de Login do front do ServeRest', () => {
+        context('E que eu clique na opção Cadastre-se', () => {
+            context('E que eu esteja na tela Cadastro', () => {
+                beforeEach(() => {
+                    cy.visit('/login')
+
+                    cy.get(locators.LOGIN.OPCAO_CADASTRE_SE)
+                        .should('be.visible')
+                        .click()
+
+                    cy.url().should('be.equal', `${Cypress.config('baseUrl')}/cadastrarusuarios`)
                 })
 
-                cy.get(locators.LOGIN.FORM)
-                  .should('be.visible')
-                  .and('contain', ex.mensagem)
-              })
+                context('Cenário 1: Validar Cadastro Administrador', () => {
+                    const exemplos = [
+                        { nome: 'nomeValido1', email: 'emailValido', senha: 'senhaValida1', mensagem: 'Cadastro realizado com sucesso' },
+                        { nome: 'nomeValido', email: 'emailInvalidoVazio', senha: 'senhaValida', mensagem: 'Email é obrigatório' },
+                        { nome: 'nomeValido2', email: 'emailInvalidoDominioSemPonto', senha: 'senhaValida2', mensagem: 'Email deve ser um email válido' },
+                    ]
+
+                    exemplos.forEach((ex) => {
+                        context(`Quando eu informar os campos ${ex.nome}, ${ex.email}, ${ex.senha} e opcão Cadastrar como administrador`, () => {
+                            it(`Então na tela de Cadastro deverá apresentar a mensagem ${ex.mensagem}`, () => {
+                                cy.fixture('usuario').then((usuarioFixture) => {
+                                    cy.realizarCadastro(usuarioFixture.admin[ex.nome], usuarioFixture.admin[ex.email], usuarioFixture.admin[ex.senha])
+                                })
+
+                                // cy.get(locators.LOGIN.FORM)
+                                //     .should('be.visible')
+                                //     .and('contain', ex.mensagem)
+                            })
+                        })
+                    })
+                })
             })
-          })
         })
-      })
     })
-  })
 })

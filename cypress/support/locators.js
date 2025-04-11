@@ -1,10 +1,10 @@
 const locators = {
     LOGIN: {
-        CAMPO_EMAIL: 'input[data-testid="email"]',
-        CAMPO_SENHA: 'input[data-testid="senha"]',
-        BOTAO_ENTRAR: 'a[data-testid="entrar"]',
+        CAMPO_EMAIL: '#email',
+        CAMPO_SENHA: 'input[name="password"]',
+        BOTAO_ENTRAR: 'button[type="submit"]',
         LOGIN_FORM: 'form[class="form"]',
-        OPCAO_CADASTRE_SE: 'a[data-testid="cadastrar"]'
+        OPCAO_CADASTRE_SE: 'a[type="button"]'
     },
     CADASTRO: {
         CAMPO_NOME: 'input[data-testid="nome"]',

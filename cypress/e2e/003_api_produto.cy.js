@@ -11,19 +11,11 @@ describe('Post Produtos', () => {
             PostProdutos.adicionar(response.body.authorization).should((resProduto) => {
                 expect(resProduto.status).to.eq(201)
                 expect(resProduto.body.message).to.eq('Cadastro realizado com sucesso')
-            })
-        })
-    })
-})
-
-describe('Post Produtos', () => {
-    it('Deletar um produto', () => {
-        PostLogin.autenticacao().should((response) => {
-            expect(response.status).to.eq(200)
                 DeleteProdutos.apagarProduto(resProduto.body._id, response.body.authorization).should((resDelete) => {
                     expect(resDelete.status).to.eq(200)
                     expect(resDelete.body.message).to.eq('Registro excluído com sucesso')
                 })
             })
         })
+    })
 })

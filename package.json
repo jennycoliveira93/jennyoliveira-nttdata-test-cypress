@@ -1,0 +1,19 @@
+{
+  "name": "jennyoliveira-nttdata-test-cypress",
+  "version": "1.0.0",
+  "description": "Automated test project with E2E and API tests of ServeRest site",
+  "main": "cypress.config.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:open:local": "cypress open --env environment=local",
+    "test": "cypress run --browser chrome",
+    "test:ff": "cypress run --config video=false --browser firefox",
+    "test:local": "cypress run --env environment=local --browser chrome",
+    "test:local:ff": "cypress run --env environment=local --config video=false --browser firefox"
+  },
+  "author": "Jenny da Costa Oliveira",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.2.0"
+  }
+}
